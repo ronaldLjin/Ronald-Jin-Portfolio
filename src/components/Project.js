@@ -7,46 +7,100 @@ import {
     Tag,
     Link,
     Image,
-    transition
+    transition,
+    HStack,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure
 } from '@chakra-ui/react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import '../styles/style.css';
 
 export default function Project({ title, desc, tech, link, image }) {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     return (
-        <Stack spacing={2} borderWidth='1px' borderRadius='lg' w={300} overflow='hidden' h={450} pos={"relative"}>
-            <Link h={"40%"} href={link} isExternal>
-                <Image
-                    src={image}
-                    filter="brightness(0.8)"
-                    _hover={{
-                        filter: "brightness(1)",
-                        transition: "all 0.2s"
-                    }}
-                    h={"100%"}
-                    w={"100%"}
-                    objectFit={"cover"}
-                />
-            </Link>
-            <Stack p={4}>
-                <Heading as="h3" size="sm">{title}</Heading>
-                <Swiper
-                    slidesPerView={'auto'}
-                    spaceBetween={15}
-                    style={{maskImage: "linear-gradient(to right, transparent 0%, black 0% 80%, transparent 100%)"}}
-                >
-                    {tech.map((item) => (
-                        <SwiperSlide className="project-slider">
-                            <Tag key={item} whiteSpace={"nowrap"}>
-                                {item}
-                            </Tag>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-                <Text>{desc}</Text>
+        <>
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>{title}</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <Stack spacing={3}>
+                            <Link h={"40%"} href={link} isExternal>
+                                <Image
+                                    src={image}
+                                    filter="brightness(0.8)"
+                                    _hover={{
+                                        filter: "brightness(1)",
+                                        transition: "all 0.2s"
+                                    }}
+                                    h={"100%"}
+                                    w={"100%"}
+                                    objectFit={"cover"}
+                                />
+                            </Link>
+                            <Wrap spacing={15}>
+                                {tech.map((item) => (
+                                    <Tag key={item} whiteSpace={"nowrap"}>
+                                        {item}
+                                    </Tag>
+                                ))}
+                            </Wrap>
+                            <Text>{desc}</Text>
+                        </Stack>
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Link href={link} isExternal mr={15}><Button colorScheme={'teal'}>View</Button></Link>
+                        <Button variant='outline' colorScheme='teal' onClick={onClose}>
+                            Close
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+            <Stack spacing={2} borderWidth='1px' borderRadius='lg' w={300} overflow='hidden' minH={450} pos={"relative"}>
+                <Link h={"40%"} href={link} isExternal>
+                    <Image
+                        src={image}
+                        filter="brightness(0.8)"
+                        _hover={{
+                            filter: "brightness(1)",
+                            transition: "all 0.2s"
+                        }}
+                        h={"100%"}
+                        w={"100%"}
+                        objectFit={"cover"}
+                    />
+                </Link>
+                <Stack p={4}>
+                    <Heading as="h3" size="sm" noOfLines={1}>{title}</Heading>
+                    <Swiper
+                        slidesPerView={'auto'}
+                        spaceBetween={15}
+                        style={{ maskImage: "linear-gradient(to right, transparent 0%, black 0% 80%, transparent 100%)" }}
+                    >
+                        {tech.map((item) => (
+                            <SwiperSlide className="project-slider">
+                                <Tag key={item} whiteSpace={"nowrap"}>
+                                    {item}
+                                </Tag>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                    <Text noOfLines={3}>{desc}</Text>
+                </Stack>
+                <HStack spacing={4} pos={"absolute"} bottom={4} left={4}>
+                    <Link href={link} isExternal><Button colorScheme='teal'>View</Button></Link>
+                    <Button colorScheme='teal' variant='outline' onClick={onOpen}>Learn More</Button>
+                </HStack>
             </Stack>
-            <Link href={link} isExternal pos={"absolute"} bottom={4} left={4}><Button>View</Button></Link>
-        </Stack>
+        </>
     )
 }

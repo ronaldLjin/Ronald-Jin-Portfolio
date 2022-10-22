@@ -1,51 +1,52 @@
 import {
     Button,
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
+    Stack,
     Text,
     Wrap,
+    Heading,
     Tag,
-    Link
+    Link,
+    Image,
+    transition
 } from '@chakra-ui/react'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import '../styles/style.css';
 
-export default function Project({ title, desc, tech, link }) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+export default function Project({ title, desc, tech, link, image }) {
     return (
-        <>
-            <Button onClick={onOpen}>{title}</Button>
-
-            <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>{title}</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        <Wrap spacing={4}>
-                            {tech.map((item) => (
-                                <Tag key={item}>
-                                    {item}
-                                </Tag>
-                            ))}
-                        </Wrap>
-                        <Text>{desc}</Text>
-                    </ModalBody>
-
-                    <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={onClose}>
-                            Close
-                        </Button>
-                        <Link href={link} isExternal>
-                            <Button variant='ghost'>View</Button>
-                        </Link>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </>
+        <Stack spacing={2} borderWidth='1px' borderRadius='lg' w={300} overflow='hidden' h={450} pos={"relative"}>
+            <Link h={"40%"} href={link} isExternal>
+                <Image
+                    src={image}
+                    filter="brightness(0.8)"
+                    _hover={{
+                        filter: "brightness(1)",
+                        transition: "all 0.2s"
+                    }}
+                    h={"100%"}
+                    w={"100%"}
+                    objectFit={"cover"}
+                />
+            </Link>
+            <Stack p={4}>
+                <Heading as="h3" size="sm">{title}</Heading>
+                <Swiper
+                    slidesPerView={'auto'}
+                    spaceBetween={15}
+                    style={{maskImage: "linear-gradient(to right, transparent 0%, black 0% 80%, transparent 100%)"}}
+                >
+                    {tech.map((item) => (
+                        <SwiperSlide className="project-slider">
+                            <Tag key={item} whiteSpace={"nowrap"}>
+                                {item}
+                            </Tag>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+                <Text>{desc}</Text>
+            </Stack>
+            <Link href={link} isExternal pos={"absolute"} bottom={4} left={4}><Button>View</Button></Link>
+        </Stack>
     )
 }

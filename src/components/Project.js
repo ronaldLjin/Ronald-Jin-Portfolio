@@ -92,7 +92,7 @@ export default function Project({ title, desc, tech, link, image }) {
                     <Swiper
                         slidesPerView={'auto'}
                         spaceBetween={15}
-                        style={{ maskImage: swiperGradients[isEndScroll]}}
+                        style={{ maskImage: swiperGradients[isEndScroll], WebkitMaskImage: swiperGradients[isEndScroll]}}
                         onProgress = {
                             (swiper, progress) => {
                                 if (progress >= 1) 

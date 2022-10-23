@@ -1,10 +1,10 @@
 import { Box, Heading, Text, Stack, Flex, Wrap, Switch } from "@chakra-ui/react"
 import Experience from "./components/Experience"
 import Project from "./components/Project"
-import iracing from './assets/images/iracing-insights.png';
-import cpucv from './assets/images/cpucv.png';
-import chaz from './assets/images/chazsmith.png';
-import sofa from './assets/images/sofa.png';
+import iracing from './assets/images/iracing-insights.webp';
+import cpucv from './assets/images/cpucv.webp';
+import chaz from './assets/images/chazsmith.webp';
+import sofa from './assets/images/sofa.webp';
 import { useColorMode } from "@chakra-ui/react";
 import Pdf from './assets/other/Longest_Sofa.pdf';
 
@@ -17,7 +17,8 @@ export default function Home() {
                 <Heading size={"md"} color={"teal.500"}>Experience</Heading>
                 <Experience
                     title={"Research Assistant"}
-                    company={"McMaster University: Canadian Network for Modelling Infectious Diseases"}
+                    company={"McMaster University"}
+                    department={"Canadian Network for Modelling Infectious Diseases"}
                     start={"May 2022"}
                     desc={"I am working on developing epidemiological tools aimed at supporting research and public health applications. I am primarily working with technologies like FastAPI (Python) and Shiny (R) to build a web API and data visualization application aimed at making large epidemiological datasets publicly available."}
                 />
@@ -29,7 +30,7 @@ export default function Home() {
                 />
             </Stack>
             <Stack spacing={3}>
-                <Heading as="h2" size="md">Projects</Heading>
+                <Heading as="h2" size="md" color={"teal.500"}>Projects</Heading>
                 <Wrap spacing={4}>
                     <Project
                         title={"iRacing Insights"}

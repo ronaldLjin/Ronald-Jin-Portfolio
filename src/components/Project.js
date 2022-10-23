@@ -21,14 +21,22 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import '../styles/style.css';
+import { useState } from 'react';
 
 export default function Project({ title, desc, tech, link, image }) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [isEndScroll, setIsEndScroll] = useState('r')
+
+    const swiperGradients = {
+        'r': "linear-gradient(to right, transparent 0%, black 0% 80%, transparent 100%)",
+        'l': "linear-gradient(to left, transparent 0%, black 0% 80%, transparent 100%)",
+        'rl': "linear-gradient(to right, transparent 0%, black 20% 80%, transparent 100%)" 
+    }
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent m={6}>
                     <ModalHeader>{title}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
@@ -65,7 +73,7 @@ export default function Project({ title, desc, tech, link, image }) {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
-            <Stack spacing={2} borderWidth='1px' borderRadius='lg' w={300} overflow='hidden' minH={450} pos={"relative"}>
+            <Stack spacing={2} borderWidth='1px' borderRadius='lg' w={{ sm: '100%', lg: '300px'}} overflow='hidden' minH={450} pos={"relative"} className={"project"}>
                 <Link h={"40%"} href={link} isExternal>
                     <Image
                         src={image}
@@ -84,7 +92,21 @@ export default function Project({ title, desc, tech, link, image }) {
                     <Swiper
                         slidesPerView={'auto'}
                         spaceBetween={15}
-                        style={{ maskImage: "linear-gradient(to right, transparent 0%, black 0% 80%, transparent 100%)" }}
+                        style={{ maskImage: swiperGradients[isEndScroll]}}
+                        onProgress = {
+                            (swiper, progress) => {
+                                if (progress >= 1) 
+                                {
+                                    setIsEndScroll('l')
+                                } else if (progress < 1 && progress > 0)
+                                {
+                                    setIsEndScroll('rl')
+                                } else
+                                {
+                                    setIsEndScroll('r')
+                                }
+                            }
+                        }
                     >
                         {tech.map((item) => (
                             <SwiperSlide className="project-slider">

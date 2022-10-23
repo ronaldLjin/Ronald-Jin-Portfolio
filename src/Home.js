@@ -1,18 +1,19 @@
-import { Box, Heading, Text, Stack, Flex, Wrap } from "@chakra-ui/react"
+import { Box, Heading, Text, Stack, Flex, Wrap, Switch } from "@chakra-ui/react"
 import Experience from "./components/Experience"
 import Project from "./components/Project"
 import iracing from './assets/images/iracing-insights.png';
 import cpucv from './assets/images/cpucv.png';
 import chaz from './assets/images/chazsmith.png';
 import sofa from './assets/images/sofa.png';
+import { useColorMode } from "@chakra-ui/react";
 
 export default function Home() {
     return (
-        <Stack p="50px 10vw 0px 10vw" spacing={6} as="samp">
-            <Heading>Ronald Jin</Heading>
+        <Stack p="0 10vw 50px 10vw" spacing={6} as="samp">
+            <Heading color={"teal.500"}>Ronald Jin</Heading>
             <Text>Hi, I am a first year Systems Design Engineering Student at the University of Waterloo. I am passionate about software development, specifically in web design and development. I am also interested in learning more about computer hardware, data science, and mathematics. </Text>
             <Stack spacing={3}>
-                <Heading size={"md"}>Experience</Heading>
+                <Heading size={"md"} color={"teal.500"}>Experience</Heading>
                 <Experience
                     title={"Research Assistant"}
                     company={"McMaster University: Canadian Network for Modelling Infectious Diseases"}
@@ -52,7 +53,7 @@ export default function Home() {
                     />
                     <Project
                         title={"Extension of The Moving Sofa Problem"}
-                        desc={"In this \"research project,\" I attempt to provide a solution to the an extension of the Moving Sofa Problem: what is the longest length of a shape that can be maneuvered through a unit-width L-shaped corridor?"}
+                        desc={"In this \"research project,\" I attempt to provide a solution to an extension of the Moving Sofa Problem: what is the longest length of a shape that can be maneuvered through a unit-width L-shaped corridor?"}
                         tech={["LaTeX", "Mathematica", "GeoGebra", "KaTeX"]}
                         link={"/extension-of-the-moving-sofa-problem"}
                         image={sofa}

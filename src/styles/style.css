@@ -1,3 +1,7 @@
 .project-slider {
     width: min-content !important;
 }
+
+.r {
+    mask-image: "none";
+}

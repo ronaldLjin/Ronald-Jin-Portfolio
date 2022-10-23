@@ -6,6 +6,7 @@ import cpucv from './assets/images/cpucv.png';
 import chaz from './assets/images/chazsmith.png';
 import sofa from './assets/images/sofa.png';
 import { useColorMode } from "@chakra-ui/react";
+import Pdf from './assets/other/Longest_Sofa.pdf';
 
 export default function Home() {
     return (
@@ -54,8 +55,8 @@ export default function Home() {
                     <Project
                         title={"Extension of The Moving Sofa Problem"}
                         desc={"In this \"research project,\" I attempt to provide a solution to an extension of the Moving Sofa Problem: what is the longest length of a shape that can be maneuvered through a unit-width L-shaped corridor?"}
-                        tech={["LaTeX", "Mathematica", "GeoGebra", "KaTeX"]}
-                        link={"/extension-of-the-moving-sofa-problem"}
+                        tech={["LaTeX", "Mathematica", "GeoGebra"]}
+                        link={Pdf}
                         image={sofa}
                     />
                 </Wrap>

@@ -23,7 +23,7 @@ import 'swiper/css';
 import '../styles/style.css';
 import { useState } from 'react';
 
-export default function Project({ title, desc, tech, link, image }) {
+export default function Project({ title, desc, tech, link, image, status }) {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isEndScroll, setIsEndScroll] = useState('r')
 
@@ -73,7 +73,7 @@ export default function Project({ title, desc, tech, link, image }) {
                     </ModalFooter>
                 </ModalContent>
             </Modal>
-            <Stack spacing={2} borderWidth='1px' borderRadius='lg' w={{ sm: '100%', lg: '300px'}} overflow='hidden' minH={450} pos={"relative"} className={"project"}>
+            <Stack spacing={2} borderWidth='1px' borderRadius='lg' overflow='hidden' minH={450} pos={"relative"} className={"project"}>
                 <Link h={"40%"} href={link} isExternal>
                     <Image
                         src={image}

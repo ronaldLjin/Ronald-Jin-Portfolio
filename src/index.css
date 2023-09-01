@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'NewCM10-Regular';
+    src: local('NewCM10-Regular'), url(./fonts/NewCM10-Regular.otf);
+  }
+
+  @font-face {
+    font-family: 'NewCM10-Regular';
+    font-weight: bold;
+    src: local('NewCM10-Bold'), url(./fonts/NewCM10-Bold.otf);
+  }
+
+  @font-face {
+    font-family: 'NewCM10-Regular';
+    font-style: italic;
+    src: local('NewCM10-Italic'), url(./fonts/NewCM10-Italic.otf);
+  }
+
+  @font-face {
+    font-family: 'NewCM10-Regular';
+    font-weight: bold;
+    font-style: italic;
+    src: local('NewCM10-BoldItalic'), url(./fonts/NewCM10-BoldItalic.otf);
+  }
